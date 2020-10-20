@@ -1,18 +1,35 @@
 package model;
 
+import java.util.Comparator;
 import java.util.Random;
 
 
 public class ItemObject implements Comparable<ItemObject> {
     static private Random rand = new Random();
+    static private int bound = 0;
     String name;
     Long price;
 
     public ItemObject() {
-//        this.name = "User#" + String.valueOf(rand.nextInt(10));
-//        this.price = Long.valueOf(rand.nextInt(10));
-        this.name = "User#" + String.valueOf(rand.nextLong());
-        this.price = rand.nextLong();
+        if (bound <= 0) {
+            this.name = "User#" + String.valueOf(rand.nextLong());
+            this.price = rand.nextLong();
+        } else {
+            this.name = "User#" + String.valueOf(rand.nextInt(bound));
+            this.price = Long.valueOf(rand.nextInt(bound));
+        }
+    }
+
+    public static void setBound(int bound) {
+        ItemObject.bound = bound;
+    }
+
+    public static Comparator<ItemObject> getComparator() {
+        return new Comparator<ItemObject>() {
+            public int compare(ItemObject o1, ItemObject o2) {
+                return o1.compareTo(o2);
+            }
+        };
     }
 
     public String getName() {

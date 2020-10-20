@@ -1,3 +1,4 @@
+import base.sort.BinarySearchTree;
 import base.sort.Sorter;
 
 public class Main {
@@ -34,8 +35,9 @@ public class Main {
 //        testBinarySearch(10_000_000);
 //        Searcher.testBinarySearch(1_000_000);
 //        System.out.println(notString("not dddbet"));
-        Sorter.testAllSort(1000_000);
+//        Sorter.testAllSort(1000_000);
 //        Sorter.testAllSort(10);
+        BinarySearchTree.Test();
 
 
 
