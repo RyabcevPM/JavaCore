@@ -9,23 +9,6 @@ import java.util.List;
 import java.util.Random;
 
 public class Searcher<T extends Comparable<T>> {
-    public static void testBinarySearch(int itemCount) {
-        long start = System.currentTimeMillis();
-        ArrayList<ItemObject> list = DataGenerator.initRandArrayList(itemCount);
-        Collections.sort(list);
-        Searcher<ItemObject> searcher = new Searcher<>();
-        Random random = new Random();
-        int searchCount = (int) Math.sqrt(itemCount);
-        ItemObject findItem;
-        ItemObject foundObj;
-        for (int i = 0; i < searchCount; i++) {
-            findItem = list.get(random.nextInt(itemCount));
-            foundObj = list.get(searcher.BinarySearch(findItem, list));
-            if (findItem.compareTo(foundObj) != 0)
-                System.out.println(String.format("no found: %S != %S", findItem, foundObj));
-        }
-        System.out.println(String.format("%d found from %d items for %d millis.", searchCount, itemCount, System.currentTimeMillis() - start));
-    }
 
     public int BinarySearch(T item, List<T> list) {
         int left = 0;

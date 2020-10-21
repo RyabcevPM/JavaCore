@@ -30,61 +30,13 @@ public class BinarySearchTree<Key, Value> implements ISearchTree<Key, Value> {
         this.isSaveAll = isSaveAllItem;
     }
 
-    public static void Test() {
-        ItemObject.setBound(0);
-        int itemCount = 1000_000;
-        long start;
-        ArrayList<ItemObject> inputList = DataGenerator.initRandArrayList(itemCount);
-        ArrayList<ItemObject> sortedList;
-
-        sortedList = new ArrayList<>(inputList);
-        start = System.currentTimeMillis();
-        Collections.sort(sortedList);
-        System.out.println(String.format("Collections.sort: %d item in %d millis.", itemCount, System.currentTimeMillis() - start));
-        if (itemCount <= 10) System.out.println(sortedList);
-//        sortedList.iterator().forEachRemaining(x-> System.out.println(x));
-
-        BinarySearchTree<ItemObject, ItemObject> tree = new BinarySearchTree<>(ItemObject.getComparator(), false);
-        start = System.currentTimeMillis();
-        for (ItemObject io : inputList) {
-            tree.Add(io, io);
-        }
-        System.out.println(String.format("init my SearchBinaryTree: %d item in %d millis.", itemCount, System.currentTimeMillis() - start));
-        start = System.currentTimeMillis();
-        ArrayList<ItemObject> tempList = tree.infixTraverse();
-        System.out.println(String.format("get all sorted items from my SearchBinaryTree: %d item in %d millis.", itemCount, System.currentTimeMillis() - start));
-        if (itemCount <= 10) System.out.println(tempList);
-        System.out.println(tempList.equals(sortedList));
-        System.out.println("my SearchBinaryTree depth = " + tree.getMaxDepth());
-
-        start = System.currentTimeMillis();
-        TreeSet<ItemObject> treeSet = new TreeSet<>();
-        treeSet.addAll(inputList);
-//        for (ItemObject io : inputList) {
-//            treeSet.add(io);
-//        }
-        System.out.println(String.format("TreeSet add all: %d item in %d millis.", itemCount, System.currentTimeMillis() - start));
-
-        tempList = new ArrayList<ItemObject>();
-        ArrayList<ItemObject> finalTempList = tempList;
-        start = System.currentTimeMillis();
-        Iterator<ItemObject> itr = treeSet.iterator();
-        itr.forEachRemaining(obj -> finalTempList.add(obj));
-        System.out.println(String.format("TreeSet get all sorted item: %d item in %d millis.", itemCount, System.currentTimeMillis() - start));
-        System.out.println(tempList.equals(sortedList));
-        if (itemCount <= 10) System.out.println(finalTempList);
-//            itr.forEachRemaining(obj -> System.out.println(obj));
-
-
-    }
-
     private int getMaxDepth(TreeItem item) {
         if (item == null) return 0;
         if (item.isLeaf()) return item.depth;
         return Math.max(getMaxDepth(item.left), getMaxDepth(item.right));
     }
 
-    int getMaxDepth() {
+    public int getMaxDepth() {
         return getMaxDepth(head);
     }
 

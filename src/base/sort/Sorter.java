@@ -8,79 +8,6 @@ import java.util.*;
 
 public class Sorter<T extends Comparable<T>> {
 
-    public static void testAllSort(int itemCount) {
-        long start;
-        ArrayList<ItemObject> inputList = DataGenerator.initRandArrayList(itemCount);
-        Sorter<ItemObject> ms = new Sorter<>();
-        ArrayList<ItemObject> tempList;
-        ArrayList<ItemObject> sortedList;
-        ItemObject[] tempArr;
-
-        sortedList = new ArrayList<>(inputList);
-        start = System.currentTimeMillis();
-        Collections.sort(sortedList);
-        System.out.println(String.format("Collections.sort: %d item sorted in %d millis.", itemCount, System.currentTimeMillis() - start));
-        if (itemCount <= 10) System.out.println(sortedList);
-
-        tempList = new ArrayList<ItemObject>(inputList);
-        start = System.currentTimeMillis();
-        ms.QuickSort(tempList);
-        System.out.print(String.format("QuickSort: %d item sorted in %d millis.", itemCount, System.currentTimeMillis() - start));
-        System.out.println(!sortedList.equals(tempList) ? " - Error sort" : " ");
-        if (itemCount <= 10) System.out.println(tempList);
-
-        tempList = new ArrayList<>(inputList.size());
-        tempArr = new ItemObject[inputList.size()];
-        start = System.currentTimeMillis();
-        inputList.toArray(tempArr);
-        ms.QuickSortArray(tempArr);
-        Collections.addAll(tempList, tempArr);
-        System.out.print(String.format("QuickSortArray: %d item sorted in %d millis.", itemCount, System.currentTimeMillis() - start));
-        System.out.println(!sortedList.equals(tempList) ? " - Error sort" : " ");
-        if (itemCount <= 10) System.out.println(tempList);
-
-        tempList = new ArrayList<>(inputList.size());
-        tempArr = new ItemObject[inputList.size()];
-        start = System.currentTimeMillis();
-        inputList.toArray(tempArr);
-        ms.MergeSortArray(tempArr);
-        Collections.addAll(tempList, tempArr);
-        System.out.print(String.format("MergeSortArray: %d item sorted in %d millis.", itemCount, System.currentTimeMillis() - start));
-        System.out.println(!sortedList.equals(tempList) ? " - Error sort" : " ");
-        if (itemCount <= 10) System.out.println(tempList);
-
-
-
-        tempList = new ArrayList<>(inputList);
-        start = System.currentTimeMillis();
-        PriorityQueueSort(tempList);
-        System.out.print(String.format("PriorityQueueSort: %d item sorted in %d millis.", itemCount, System.currentTimeMillis() - start));
-        System.out.println(!sortedList.equals(tempList) ? " - Error sort" : " ");
-        if (itemCount <= 10) System.out.println(tempList);
-
-        tempList = new ArrayList<ItemObject>(inputList);
-        start = System.currentTimeMillis();
-        ms.MergeSort(tempList);
-        System.out.print(String.format("MergeSortList: %d item sorted in %d millis.", itemCount, System.currentTimeMillis() - start));
-        System.out.println(!sortedList.equals(tempList) ? " - Error sort" : " ");
-        if (itemCount <= 10) System.out.println(tempList);
-
-        tempList = new ArrayList<>(inputList);
-        start = System.currentTimeMillis();
-        TreeSetDistinctSort(tempList);
-        System.out.print(String.format("TreeSetDistinctSort: %d item sorted in %d millis.", itemCount, System.currentTimeMillis() - start));
-        System.out.println(!sortedList.equals(tempList) ? " - Error sort" : " ");
-        if (itemCount <= 10) System.out.println(tempList);
-
-//        tempList = new ArrayList<>(inputList);
-//        start = System.currentTimeMillis();
-//        TreeSetSort(tempList);
-//        System.out.print(String.format("TreeSetSort: %d item sorted in %d millis.", itemCount, System.currentTimeMillis() - start));
-//        System.out.println(!sortedList.equals(tempList) ? " - Error sort" : " ");
-//        if (itemCount <= 10) System.out.println(tempList);
-
-    }
-
     public static void PriorityQueueSort(ArrayList<ItemObject> list) {
         PriorityQueue<ItemObject> pq = new PriorityQueue(list.size());
         int count = list.size();
@@ -111,16 +38,6 @@ public class Sorter<T extends Comparable<T>> {
         }
     }
 
-
-    public static void TreeSetDistinctSort(ArrayList<ItemObject> list) {
-        TreeSet<ItemObject> treeSet = new TreeSet<>();
-        treeSet.addAll(list);
-        list.clear();
-        Iterator<ItemObject> itr = treeSet.iterator();
-        while (itr.hasNext()) {
-            list.add(itr.next());
-        }
-    }
 
     void Swap(List<T> list, int i, int j) {
         T temp = list.get(i);

@@ -31,13 +31,14 @@ public class Main {
     public static void main(String[] args) {
 //        Example collectionExample = new Example(100_000);
 //        collectionExample.run();
-
+//
 //        testBinarySearch(10_000_000);
 //        Searcher.testBinarySearch(1_000_000);
 //        System.out.println(notString("not dddbet"));
 //        Sorter.testAllSort(1000_000);
 //        Sorter.testAllSort(10);
-        BinarySearchTree.Test();
+//        BinarySearchTree.Test();
+        System.out.println("main");
 
 
 
