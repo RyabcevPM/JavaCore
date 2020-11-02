@@ -1,4 +1,4 @@
-package base.test;
+package base.tests;
 
 import base.sort.BinarySearchTree;
 import base.sort.Searcher;
@@ -13,7 +13,7 @@ import java.util.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AutoTest {
-    private final static int itemCount = 1000_000;
+    private final static int itemCount = 1000;
     private final static int bound = 0;
     private static ArrayList<ItemObject> inputList;
     private static ArrayList<ItemObject> sortedList;
@@ -51,6 +51,12 @@ public class AutoTest {
         System.out.println(String.format("input item count = %,d", itemCount));
     }
 
+    @Test
+    public void testStream(){
+        DataGenerator.getStream(10).forEach(i -> System.out.println(i));
+
+    }
+
 
     @Test
     public void testExample() {
@@ -62,7 +68,7 @@ public class AutoTest {
 //        assertNotNull([message], object) – проверяет, что объект не является пустым null.
 //        assertSame([String], expected, actual) – проверяет, что обе переменные относятся к одному объекту.
 //        assertNotSame([String], expected, actual) – проверяет, что обе переменные относятся к разным объектам
-        System.out.println("Example test");
+        System.out.println("Example tests");
         Integer A = 24;
         Integer B = 24;
         Double C = 7.0;
@@ -78,13 +84,13 @@ public class AutoTest {
 
     @Test(timeout = 100)
     public void testTime() {
-        System.out.println("Example time test ");
+        System.out.println("Example time tests ");
         Assert.assertEquals(12, 12);
     }
 
     @Test(expected = Exception.class)
     public void testException() {
-        System.out.println("Example exception test");
+        System.out.println("Example exception tests");
         Integer A = 1;
         Integer B = 2;
         B = null;
@@ -264,6 +270,8 @@ public class AutoTest {
         }
         System.out.println(String.format("%,d items searched in %d millis.", searchCount, getMillis()));
     }
+
+
 
 
 }

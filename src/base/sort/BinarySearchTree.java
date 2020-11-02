@@ -1,11 +1,7 @@
 package base.sort;
 
-import model.DataGenerator;
-import model.ItemObject;
-import sun.reflect.generics.tree.Tree;
-
-import java.sql.SQLOutput;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
 
 interface ISearchTree<Key, Value> {
     Value Search(Key key);
@@ -53,6 +49,14 @@ public class BinarySearchTree<Key, Value> implements ISearchTree<Key, Value> {
     public ArrayList<Value> infixTraverse() {
         return infixTraverse(head);
     }
+
+    private TreeItem getMinValue(TreeItem item) {
+        TreeItem res = item;
+        while (res.left != null) res = res.left;
+        return res;
+    }
+
+
 
     @Override
     public Value Search(Key key) {
